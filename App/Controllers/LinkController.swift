@@ -26,7 +26,15 @@ class LinkController: Controller {
             return "No URL"
         }
 
-        guard let originalUrl = NSURL(string: originalUrlString) else {
+        var cleanUrlString = originalUrlString
+        if (!originalUrlString.hasScheme()) {
+            cleanUrlString = "http://" + cleanUrlString
+        }
+        else if (!originalUrlString.hasHttpPrefix()) {
+            return "Invalid URL scheme"
+        }
+
+        guard let originalUrl = NSURL(string: cleanUrlString) else {
             return "Invalid URL"
         }
 

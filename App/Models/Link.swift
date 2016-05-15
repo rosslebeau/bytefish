@@ -25,6 +25,7 @@ extension Link: JsonRepresentable {
     func makeJson() -> Json {
         return Json([
             "id": "\(id)",
+            "slug": "\(slug)",
             "originalUrl": "\(originalUrl)",
             "shortUrl:": "\(shortUrl)"
         ])
@@ -34,5 +35,15 @@ extension Link: JsonRepresentable {
 extension Link: StringInitializable {
     convenience init?(from slug: String) throws {
         self.init(fromSlug: slug)
+    }
+}
+
+extension String {
+    func hasHttpPrefix() -> Bool {
+        return self.hasPrefix("http://") || self.hasPrefix("https://")
+    }
+
+    func hasScheme() -> Bool {
+        return (self as NSString).range(of: "://").location != NSNotFound
     }
 }
