@@ -20,10 +20,10 @@ extension Database {
             let linkId = BSON.ObjectId()
 
             let seq = try nextSequence()
+            let slug = try Shortener.generateSlug(fromSeq: seq)
+            let shortUrl = try Shortener.urlForSlug(slug)
 
-            let shortUrl = try Shortener.generateShortenedUrl(fromSeq: seq)
-
-            let link = Link(id: linkId.hexString, seq: seq, originalUrl: originalUrl, shortUrl: shortUrl)
+            let link = Link(id: linkId.hexString, seq: seq, slug: slug, originalUrl: originalUrl, shortUrl: shortUrl)
 
             let linkDocument: Document = try link.toDocument()
             let createdLinkDocument = try links.insert(linkDocument)
@@ -59,6 +59,7 @@ extension Database {
 
 extension Link {
     static let SeqKey = "seq"
+    static let SlugKey = "slug"
     static let OriginalUrlKey = "originalUrl"
     static let ShortUrlKey = "shortUrl"
 
@@ -67,27 +68,46 @@ extension Link {
             return nil
         }
 
-        guard let oUrl = NSURL(string: document[Link.OriginalUrlKey].string) else {
+        guard let seq = document[Link.SeqKey].int64Value else {
             return nil
         }
 
-        guard let sUrl = NSURL(string: document[Link.ShortUrlKey].string) else {
+        guard let slug = document[Link.SlugKey].stringValue else {
             return nil
         }
 
-        guard let s = document[Link.SeqKey].int64Value else {
+        guard let originalUrl = NSURL(string: document[Link.OriginalUrlKey].string) else {
             return nil
         }
 
-        self.init(id: objId.hexString, seq: s, originalUrl: oUrl, shortUrl: sUrl)
+        guard let shortUrl = NSURL(string: document[Link.ShortUrlKey].string) else {
+            return nil
+        }
+
+        self.init(id: objId.hexString, seq: seq, slug: slug, originalUrl: originalUrl, shortUrl: shortUrl)
     }
 
     func toDocument() throws -> Document {
         return try [
             Database.IdKey: ~BSON.ObjectId(id),
             Link.SeqKey: ~seq,
+            Link.SlugKey: ~slug,
             Link.OriginalUrlKey: ~originalUrl.absoluteString,
             Link.ShortUrlKey: ~shortUrl.absoluteString
         ]
+    }
+
+    convenience init?(fromSlug slug: String) {
+        do {
+            guard let link = try Database.database.links.findOne(matching: [Link.SlugKey: ~slug]) else {
+                Log.error("Failed to find link for slug: \(slug)")
+                return nil
+            }
+            self.init(document: link);
+        }
+        catch {
+            Log.error("Failed to find link for slug: \(slug)")
+            return nil
+        }
     }
 }

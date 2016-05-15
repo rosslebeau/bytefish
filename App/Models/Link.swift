@@ -8,12 +8,14 @@ enum LinkError: ErrorProtocol {
 final class Link {
     var id: String
     var seq: Int64
+    var slug: String
     var originalUrl: NSURL
     var shortUrl: NSURL
 
-    init(id: String, seq: Int64, originalUrl: NSURL, shortUrl: NSURL) {
+    init(id: String, seq: Int64, slug: String, originalUrl: NSURL, shortUrl: NSURL) {
         self.id = id
         self.seq = seq
+        self.slug = slug
         self.originalUrl = originalUrl
         self.shortUrl = shortUrl
     }
@@ -30,11 +32,7 @@ extension Link: JsonRepresentable {
 }
 
 extension Link: StringInitializable {
-    convenience init?(from string: String) throws {
-        return nil
-        // guard let url = NSURL(string: string) else {
-        //     throw LinkError.InvalidURL
-        // }
-        // self.init(originalUrl: url)
+    convenience init?(from slug: String) throws {
+        self.init(fromSlug: slug)
     }
 }

@@ -9,18 +9,13 @@ enum ShortenerError: ErrorProtocol {
 class Shortener {
     static let alphabet: [Character] = Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)
 
-    static func generateShortenedUrl(fromSeq seq: Int64) throws -> NSURL {
-        return try urlForShortenedValue(generateShortenedValue(fromSeq: seq))
-    }
-
-    static func generateShortenedValue(fromSeq seq: Int64) throws -> String {
+    static func generateSlug(fromSeq seq: Int64) throws -> String {
         let short = intToAlphabet(int: seq, alphabet: alphabet)
-        print("alphabet: \(short)")
         return short
     }
 
-    static func urlForShortenedValue(_ shortenedValue: String) throws -> NSURL {
-        guard let url = NSURL(string: "byte.fish/\(shortenedValue)") else {
+    static func urlForSlug(_ slug: String) throws -> NSURL {
+        guard let url = NSURL(string: "byte.fish/\(slug)") else {
             throw ShortenerError.FailedURL
         }
 

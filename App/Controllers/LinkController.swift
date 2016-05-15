@@ -56,4 +56,9 @@ class LinkController: Controller {
     func destroy(_ request: Request, item link: Link) throws -> ResponseRepresentable {
       return link
     }
+
+    func redirect(_ request: Request, item link: Link) throws -> ResponseRepresentable {
+        print("\(link.originalUrl.scheme), \(link.originalUrl.host), \(link.originalUrl.relativeString)")
+        return Response(redirect: link.originalUrl.absoluteString)
+    }
 }
