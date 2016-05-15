@@ -4,6 +4,7 @@ import Foundation
 enum ShortenerError: ErrorProtocol {
     case FailedURL
     case InvalidId
+    case InvalidAlphabetCharacter
 }
 
 class Shortener {
@@ -44,6 +45,25 @@ class Shortener {
         }
         else {
             return backwardsIntToAlphabet(int: remainder, alphabet: alphabet, acc: newAcc)
+        }
+    }
+
+    static func seqForSlug(_ slug: String) throws -> Int64 {
+        let slugChars = Array(slug.characters)
+        let intValue = try slugChars.map({ letter in
+            return try Shortener.intFromAlphabetLetter(letter)
+        }).reduce(Int64(0), combine: +)
+        print("intv: \(intValue)")
+
+        return intValue
+    }
+
+    static func intFromAlphabetLetter(_ letter: Character) throws -> Int {
+        if let index = alphabet.index(of: letter) {
+            return index
+        }
+        else {
+            throw ShortenerError.InvalidAlphabetCharacter
         }
     }
 }

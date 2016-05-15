@@ -99,7 +99,8 @@ extension Link {
 
     convenience init?(fromSlug slug: String) {
         do {
-            guard let link = try Database.database.links.findOne(matching: [Link.SlugKey: ~slug]) else {
+            let seq = try Shortener.seqForSlug(slug)
+            guard let link = try Database.database.links.findOne(matching: [Link.SeqKey: ~seq]) else {
                 Log.error("Failed to find link for slug: \(slug)")
                 return nil
             }
