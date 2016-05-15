@@ -5,14 +5,16 @@ enum ShortenerError: ErrorProtocol {
     case FailedURL
     case InvalidId
     case InvalidAlphabetCharacter
+    case InvalidChecksum
 }
 
 class Shortener {
     static let alphabet: [Character] = Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".characters)
 
     static func generateSlug(fromSeq seq: Int64) throws -> String {
-        let short = intToAlphabet(int: seq, alphabet: alphabet)
-        return short
+        let alphabetEncoded = intToAlphabet(int: seq, alphabet: alphabet)
+        let checksum = checksumForSeq(seq)
+        return checksum + alphabetEncoded
     }
 
     static func urlForSlug(_ slug: String) throws -> NSURL {
@@ -50,12 +52,20 @@ class Shortener {
 
     static func seqForSlug(_ slug: String) throws -> Int64 {
         let slugChars = Array(slug.characters)
-        let intValue = try slugChars.map({ letter in
-            return try Shortener.intFromAlphabetLetter(letter)
-        }).reduce(Int64(0), combine: +)
-        print("intv: \(intValue)")
+        let checksum = String(slugChars.prefix(upTo: 2))
+        let encodedSeq = slugChars.suffix(from: 2)
 
-        return intValue
+        let intValue = try encodedSeq.map({ letter in
+            return try intFromAlphabetLetter(letter)
+        }).reduce(Int64(0), combine: +)
+
+        let checksumFromDecoding = checksumForSeq(intValue)
+        
+        if checksum == checksumFromDecoding {
+            return intValue
+        } else {
+            throw ShortenerError.InvalidChecksum
+        }
     }
 
     static func intFromAlphabetLetter(_ letter: Character) throws -> Int {
@@ -64,6 +74,18 @@ class Shortener {
         }
         else {
             throw ShortenerError.InvalidAlphabetCharacter
+        }
+    }
+
+    static func checksumForSeq(_ seq: Int64) -> String {
+        let checksumGenerator = seq % (Int64(alphabet.count) ^ 2)
+        let backwards = backwardsIntToAlphabet(int: checksumGenerator, alphabet: alphabet, acc: [])
+
+        if (backwards.count == 2) {
+            return String(backwards.reversed())
+        }
+        else {
+            return String([alphabet[0], backwards[0]])
         }
     }
 }
