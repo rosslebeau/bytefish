@@ -11,7 +11,6 @@ extension Database {
     static let SequencerId = "linkSequence"
     static let SequenceKey = "seq"
 
-    static let sequencerQueue = dispatch_queue_create("com.bytefish.linkSequenceQueue", nil)
     static let sequencerLock = Lock()
     static let sequencerQuery: Query = Database.IdKey == SequencerId
 
