@@ -5,25 +5,25 @@ body {
     min-height: 100%;
 }
 
-.wrapper {
+.vcenter-wrapper {
 	height: 80vh;
   width: 100%;
   display: table;
 }
 
-.main {
+.vcenter-container {
 	display: table-cell;
   vertical-align: middle;
 }
 
-.main h1 {
+.home h1 {
 	text-align: center;
 	font-family: "Source Sans Pro";
 	font-size: 3.5em;
 	/*font-weight: 600;*/
 }
 
-.main input {
+.home input {
 	height: 100%;
 }
 
@@ -53,4 +53,15 @@ body {
 	width: 23.5%;
 	float: right;
 	margin: auto;
+}
+
+.show-short-url {
+	border-width: thin;
+	border-color: #212131
+}
+
+.show-link-container {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }

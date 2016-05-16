@@ -1,20 +1,20 @@
 import Vapor
 import Foundation
+import Mustache
 
 class LinkController: Controller {
     typealias Item = Link
 
+    var app: Application
     var database: Database
 
     required init(application: Application) {
-        Log.info("Link controller created")
+        app = application
         database = Database.database
     }
 
     func index(_ request: Request) throws -> ResponseRepresentable {
-        return Json([
-            "controller": "LinkController.index"
-        ])
+        return Response(redirect: "/")
     }
 
     func store(_ request: Request) throws -> ResponseRepresentable {
@@ -43,7 +43,7 @@ class LinkController: Controller {
                 return "Failed to add link to database"
             }
 
-            return link.makeJson()
+            return Response(redirect: "/links/\(link.slug)")
         }
         catch {
             return "Failed to add link to database"
@@ -51,10 +51,15 @@ class LinkController: Controller {
     }
 
     func show(_ request: Request, item link: Link) throws -> ResponseRepresentable {
-        return Json([
-            "controller": "LinkController.show",
-            "link": link
-        ])
+        do {
+            return try app.view("link.mustache", context: [
+                "shortUrl": link.shortUrl.absoluteString,
+                "originalUrl": link.originalUrl.absoluteString
+            ])
+        }
+        catch {
+            return "Error showing link"
+        }
     }
 
     func update(_ request: Request, item link: Link) throws -> ResponseRepresentable {
