@@ -1,77 +1,56 @@
-* {
-	box-sizing: border-box;
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
 }
 
-body, html {
-	padding: 0;
-	margin: 0;
+.wrapper {
+	height: 80vh;
+  width: 100%;
+  display: table;
+}
+
+.main {
+	display: table-cell;
+  vertical-align: middle;
+}
+
+.main h1 {
+	text-align: center;
+	font-family: "Source Sans Pro";
+	font-size: 3.5em;
+	/*font-weight: 600;*/
+}
+
+.main input {
 	height: 100%;
 }
 
-body {
-	font-family: sans-serif;
-	color: #333;
-	position: relative;
-}
-
-
-a {
-	color: #92A8D1;
-	text-decoration: none;
-	border-bottom: 1px dotted;
-}
-
-a:hover {
-	color: #F7CAC9;
-}
-
-div.wrapper {
+.link-form-container {
 	width: 100%;
-	max-width: 600px;
-	margin: 0 auto;
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-	margin-top: -25px; //adjust eye level
+	height: 7%;
+	position: absolute !important;
 }
 
-h1#logo {
-	text-indent: -9999px;
-	background-image: url(../images/vapor-logo.png);
-	background-size: 100%;
-	width: 347.5px;
-	height: 84px;
-	margin: 0 auto;
+.link-form {
+	width: 40%;
+	height: 100%;
+	margin-left: auto;
+  margin-right: auto;
 }
 
-nav.main {
-	text-align: center;
-	margin-top: 20px;
-}
-nav.main ul {
-	margin: 0;
-	padding: 0;
-}
-nav.main ul li {
-	display: inline-block;
-	padding: 0 5px;
+.link-input {
+	width: 75%;
+	height: 100%;
 }
 
-
-footer.main {
-	position: absolute;
-	width: 100%;
-	text-align: center;
-	bottom: 10px;
+.pure-button {
+	border-radius: 5px;
 }
 
-footer.main p {
-	margin: 0;
-	padding: 0;
-	color: #ccc;
-	font-weight: 300;
-}
-
-footer.main p a {
-	color: #ccc;
+.pure-button.bf-button {
+	width: 23.5%;
+	float: right;
+	margin: auto;
 }
