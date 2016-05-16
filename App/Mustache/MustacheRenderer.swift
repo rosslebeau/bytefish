@@ -17,6 +17,7 @@ public class MustacheRenderer: Vapor.RenderDriver {
 
         for (name, file) in files {
             do {
+                #if os(Linux)
                 let bytes = try readBytesFromFile(path: file)
 
                 var signedData = bytes.map { byte in
@@ -25,6 +26,9 @@ public class MustacheRenderer: Vapor.RenderDriver {
 
                 signedData.append(0)
                 includes[name] = String(validatingUTF8: signedData)
+                #else
+                includes[name] = try String(contentsOfFile: file)
+                #endif
             } catch {
                 Log.warning("Could not open file \(file). Error: \(error)")
             }
