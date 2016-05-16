@@ -3,8 +3,7 @@ import MongoKitten
 
 class Database {
     static let IdKey = "_id"
-
-    static let database = Database(name: "bytefish", port: "27017")!
+    static let database = Database(name: "ross-byte-fish", port: "23452")!
 
     var server: MongoKitten.Server
     var mongo: MongoKitten.Database
@@ -13,7 +12,7 @@ class Database {
 
     init?(name: String, port: String) {
         do {
-            server = try Server("mongodb://\(Secrets.MongoUsername):\(Secrets.MongoPassword)@localhost:\(port)", automatically: true)
+            server = try Server("mongodb://user:pass@ds023452.mlab.com:\(port)", automatically: true)
             mongo = server[name]
             links = mongo["links"]
 

@@ -1,0 +1,51 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "FBDAD4449CAB2316D2A8A5E717FEB6EB478364F5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4A88C7F5F6EA13C3C2A03CD1950D7F655F1E4F26" : 0,
+    "FBDAD4449CAB2316D2A8A5E717FEB6EB478364F5" : 0,
+    "1E72C4C11736864B9AA36A7CE5A7583666A1B027" : 0,
+    "10A2CB6C4392F0E306FF8D509BE5E88232276EA4" : 0,
+    "6F592973CDAFC6396CA0DD0B7DAC14E5B55161D2" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "85D94D12-CB1F-4F18-82F7-60EA99B936F5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4A88C7F5F6EA13C3C2A03CD1950D7F655F1E4F26" : "bytefish\/Packages\/SHA1-0.7.0\/",
+    "FBDAD4449CAB2316D2A8A5E717FEB6EB478364F5" : "bytefish\/",
+    "1E72C4C11736864B9AA36A7CE5A7583666A1B027" : "bytefish\/Packages\/SHA2-0.7.0\/",
+    "10A2CB6C4392F0E306FF8D509BE5E88232276EA4" : "bytefish\/Packages\/String-0.7.1\/",
+    "6F592973CDAFC6396CA0DD0B7DAC14E5B55161D2" : "bytefish\/Packages\/MongoKitten-0.9.2\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "bytefish",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "bytefish.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Zewo\/String.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "10A2CB6C4392F0E306FF8D509BE5E88232276EA4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/CryptoKitten\/SHA2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1E72C4C11736864B9AA36A7CE5A7583666A1B027"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/CryptoKitten\/SHA1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4A88C7F5F6EA13C3C2A03CD1950D7F655F1E4F26"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/PlanTeam\/MongoKitten.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6F592973CDAFC6396CA0DD0B7DAC14E5B55161D2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:rosslebeau\/bytefish.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FBDAD4449CAB2316D2A8A5E717FEB6EB478364F5"
+    }
+  ]
+}
