@@ -1,9 +1,3 @@
-# This is for usernames, passwords, API keys, etc
-App/Secrets.swift
-
-# This is for deployment-specific settings
-App/Env.swift
-
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
