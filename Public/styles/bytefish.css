@@ -1,8 +1,13 @@
 html {
     height: 100%;
 }
+
 body {
     min-height: 100%;
+}
+
+p {
+	font-family: "Source Sans Pro"
 }
 
 .vcenter-wrapper {
@@ -53,6 +58,10 @@ body {
 	width: 23.5%;
 	float: right;
 	margin: auto;
+}
+
+.credits {
+	text-align: center;
 }
 
 .show-link-container {
