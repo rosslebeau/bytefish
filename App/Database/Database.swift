@@ -3,20 +3,20 @@ import MongoKitten
 
 class Database {
     static let IdKey = "_id"
-    static let database = Database(name: "ross-byte-fish", port: "23452")!
+    static let database = Database(username: Env.MongoUsername, password: Env.MongoPassword, host: Env.MongoHost, port: Env.MongoPort)!
 
     var server: MongoKitten.Server
-    var mongo: MongoKitten.Database
+    var db: MongoKitten.Database
     var links: MongoKitten.Collection
     var linkSequencer: MongoKitten.Collection
 
-    init?(name: String, port: String) {
+    init?(username: String, password: String, host: String, port: String) {
         do {
-            server = try Server("mongodb://user:pass@ds023452.mlab.com:\(port)", automatically: true)
-            mongo = server[name]
-            links = mongo["links"]
+            server = try Server("mongodb://\(username):\(password)@\(host):\(port)", automatically: true)
+            db = server[Env.MongoDbName]
+            links = db["links"]
 
-            linkSequencer = mongo["linkSequencer"]
+            linkSequencer = db["linkSequencer"]
             // We want to keep only one document in the linkSequencer.
             // Create it if it doesn't exist.
             do {

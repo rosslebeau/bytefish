@@ -18,7 +18,7 @@ class Shortener {
     }
 
     static func urlForSlug(_ slug: String) throws -> NSURL {
-        guard let url = NSURL(string: "https://guarded-shore-71209.herokuapp.com/\(slug)") else {
+        guard let url = NSURL(string: "\(Env.ShortenerHost)/\(slug)") else {
             throw ShortenerError.FailedURL
         }
 
@@ -60,7 +60,7 @@ class Shortener {
         }).reduce(Int64(0), combine: +)
 
         let checksumFromDecoding = checksumForSeq(intValue)
-        
+
         if checksum == checksumFromDecoding {
             return intValue
         } else {
