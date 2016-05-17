@@ -3,13 +3,23 @@
 
 <head>
   {{>head}}
+
+  <script>
+  window.onload = function() {
+    var input = document.getElementById('shortUrl');
+    input.focus();
+    input.select();
+  }
+</script>
 </head>
 
 <body>
 	<div class="vcenter-wrapper">
-		<div class="show-link-container vcenter-container">
-      <h2>{{originalUrl}}</h2>
-      <h1 class="show-short-url">{{shortUrl}}</h1>
+    <div class="vcenter-container">
+  		<div class="show-link-container">
+        <h2>{{originalUrl}}</h2>
+        <textarea class="show-short-url" id="shortUrl" readonly rows="1" cols="{{charactersInUrl}}" onclick="this.focus();this.select()">{{shortUrl}}</textarea>
+      </div>
     </div>
   </div>
 </body>
