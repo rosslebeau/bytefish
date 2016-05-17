@@ -44,6 +44,6 @@ extension String {
     }
 
     func hasScheme() -> Bool {
-        return (self as NSString).range(of: "://").location != NSNotFound
+        return range(of: "://") != nil
     }
 }
