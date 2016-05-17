@@ -55,7 +55,7 @@ class LinkController: Controller {
             return try app.view("link.mustache", context: [
                 "shortUrl": link.shortUrl.absoluteString,
                 "originalUrl": link.originalUrl.absoluteString,
-                "charactersInUrl": link.shortUrl.absoluteString.characters.count - 1
+                "charactersInUrl": link.shortUrl.absoluteString.characters.count
             ])
         }
         catch {
